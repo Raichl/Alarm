@@ -28,28 +28,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@android:color/transparent"
                 android:clickable="true"
                 android:scaleType="centerInside"
-                android:background="@android:color/transparent"
-                app:srcCompat="@drawable/asset__15_" />
+                app:srcCompat="@drawable/left_dark" />
 
             <ImageButton
                 android:id="@+id/ib_Emergency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="centerInside"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/asset__16_" />
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/emergency_gang_dark" />
 
             <ImageButton
                 android:id="@+id/ib_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="centerInside"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/asset__14_" />
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/right_dark" />
 
         </LinearLayout>
 
@@ -74,9 +74,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="centerInside"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/asset__12_" />
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/running_lights_dark" />
 
             <ImageButton
                 android:id="@+id/ib_low_beam"
@@ -158,176 +158,84 @@
             android:id="@+id/carObj"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:layout_weight="3">
 
             <ImageView
-                android:id="@+id/layerCarMain"
+                android:id="@+id/iv_RunningStop"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/car_model" />
+                app:srcCompat="@drawable/dimensions" />
+
+            <ImageView
+                android:id="@+id/iv_LowBeam"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/low_beaml" />
 
             <ImageView
                 android:id="@+id/iv_HighBeam"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="centerInside"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/high_beam" />
-
-            <ImageView
-                android:id="@+id/iv_Dimensions"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/dimensions" />
+                app:srcCompat="@drawable/high_beam" />
 
             <ImageView
                 android:id="@+id/iv_Right"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="centerInside"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/right" />
+                app:srcCompat="@drawable/right" />
+
+            <ImageView
+                android:id="@+id/iv_RunnungL"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/running_lightsl" />
 
             <ImageView
                 android:id="@+id/iv_Left"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/left"
-                tools:visibility="invisible" />
-
-            <ImageView
-                android:id="@+id/iv_Stop"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/stop" />
+                app:srcCompat="@drawable/left" />
 
             <ImageView
-                android:id="@+id/iv_LowBeaml"
+                android:id="@+id/iv_Car"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/low_beaml" />
-
-            <ImageView
-                android:id="@+id/iv_RunningLightsl"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/running_lightsl" />
-
-            <ImageView
-                android:id="@+id/iv_Hood"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/hood" />
-
-            <ImageView
-                android:id="@+id/iv_Trunk"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/trunkl" />
-
-            <ImageView
-                android:id="@+id/iv_DoorPR"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/p_r" />
-
-            <ImageView
-                android:id="@+id/iv_DoorZR"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/z_r" />
-
-            <ImageView
-                android:id="@+id/iv_DoorPL"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/p_l" />
-
-            <ImageView
-                android:id="@+id/iv_DoorZL"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:scaleType="centerInside"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@drawable/z_ll" />
+                app:srcCompat="@drawable/car_model" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
