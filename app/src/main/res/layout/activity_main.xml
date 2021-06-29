@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__15_" />
+
+            <ImageButton
+                android:id="@+id/ib_Emergency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__16_" />
+
+            <ImageButton
+                android:id="@+id/ib_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__14_" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_High_Beam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/asset__10_" />
+
+            <ImageButton
+                android:id="@+id/ib_dimensions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__12_" />
+
+            <ImageButton
+                android:id="@+id/ib_low_beam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__11_" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="5">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout8"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_Charge"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/asset__17_" />
+
+                    <ImageView
+                        android:id="@+id/iv_Key"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/asset__13_" />
+
+                    <ImageView
+                        android:id="@+id/iv_Fuel"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/asset__9_" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_Fuel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/test"
+                    android:textColor="@color/red"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_Charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/test"
+                    android:textColor="@color/red"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/carObj"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3">
+
+            <ImageView
+                android:id="@+id/layerCarMain"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/car_model" />
+
+            <ImageView
+                android:id="@+id/iv_HighBeam"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/high_beam" />
+
+            <ImageView
+                android:id="@+id/iv_Dimensions"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/dimensions" />
+
+            <ImageView
+                android:id="@+id/iv_Right"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/right" />
+
+            <ImageView
+                android:id="@+id/iv_Left"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/left"
+                tools:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/iv_Stop"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/stop" />
+
+            <ImageView
+                android:id="@+id/iv_LowBeaml"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/low_beaml" />
+
+            <ImageView
+                android:id="@+id/iv_RunningLightsl"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/running_lightsl" />
+
+            <ImageView
+                android:id="@+id/iv_Hood"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/hood" />
+
+            <ImageView
+                android:id="@+id/iv_Trunk"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/trunkl" />
+
+            <ImageView
+                android:id="@+id/iv_DoorPR"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/p_r" />
+
+            <ImageView
+                android:id="@+id/iv_DoorZR"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/z_r" />
+
+            <ImageView
+                android:id="@+id/iv_DoorPL"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/p_l" />
+
+            <ImageView
+                android:id="@+id/iv_DoorZL"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerInside"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/z_ll" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5">
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_Temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/asset__7_" />
+
+                <ImageButton
+                    android:id="@+id/ib_Window"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:background="@android:color/transparent"
+                    app:srcCompat="@drawable/asset__6_" />
+
+                <ImageView
+                    android:id="@+id/iv_Hand_Brake"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/asset__8_" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_Temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/test"
+                android:textColor="@color/red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@color/Gray"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_Trunk"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__5_" />
+
+            <ImageButton
+                android:id="@+id/ib_Start"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__4_" />
+
+            <ImageButton
+                android:id="@+id/ib_Lock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/asset__20_" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
