@@ -42,27 +42,40 @@ class MainActivity : AppCompatActivity() {
 
         val ibLowBeam : ImageButton = findViewById(R.id.ib_low_beam)
         val ivLowBeam : ImageView = findViewById(R.id.iv_LowBeam)
+        val LowBeamON = R.drawable.low_beam
+        val LowBeamOff = R.drawable.low_beam_dark
+        var clickCheakLowBeam = false
         ibLowBeam.setOnClickListener{
             blinding.blindONorOFF(ivLowBeam)
+            blinding.swapPict(ibLowBeam,LowBeamON,LowBeamOff,clickCheakLowBeam)
+            clickCheakLowBeam = !clickCheakLowBeam
         }
 
         val ibHighBeam : ImageButton = findViewById(R.id.ib_High_Beam)
         val ivHighBeam : ImageView = findViewById(R.id.iv_HighBeam)
+        val HighBeamON = R.drawable.high_beam_btn
+        val HighBeamOff = R.drawable.high_beam_dark
+        var clickCheakHighBeam = false
         ibHighBeam.setOnClickListener{
             blinding.blindONorOFF(ivHighBeam)
+            blinding.swapPict(ibHighBeam,HighBeamON,HighBeamOff,clickCheakHighBeam)
+            clickCheakHighBeam = !clickCheakHighBeam
         }
 
         val ibDimensions : ImageButton = findViewById(R.id.ib_dimensions)
         val ivRunningStop : ImageView = findViewById(R.id.iv_RunningStop)
         val ivRunningl : ImageView = findViewById(R.id.iv_RunnungL)
-        val DimensionsIconFirst = (R.drawable.running_lights_dark)
-        val DimensionsIconSecond = (R.drawable.running_lights)
+        val DimensionsIconFirst = R.drawable.running_lights_dark
+        val DimensionsIconSecond = R.drawable.running_lights
+        var clickCheakDimensions = false
         ibDimensions.setOnClickListener{
             blinding.blindONorOFF(ivRunningStop)
             blinding.blindONorOFF(ivRunningl)
-
-            ibDimensions.setImageResource(DimensionsIconSecond)
+            blinding.swapPict(ibDimensions,DimensionsIconSecond,DimensionsIconFirst,clickCheakDimensions)
+            clickCheakDimensions = !clickCheakDimensions
         }
+
+
 
 
 

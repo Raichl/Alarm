@@ -1,12 +1,15 @@
 package com.example.alarm
 
 import android.app.Activity
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
 
 class Blinding {
     private var clikCheack = false
+
+
     fun blind (obj : ImageView, activity: Activity){
         clikCheack = !clikCheack
         Thread{
@@ -49,11 +52,9 @@ class Blinding {
             obj.visibility = View.INVISIBLE
         }
     }
-    fun SwapPict (obj : ImageButton, resFirst : Int, resSecond : Int, activity: Activity){
-        if (obj.visibility == View.INVISIBLE){
-            obj.visibility = View.VISIBLE
-        }else{
-            obj.visibility = View.INVISIBLE
-        }
+    fun swapPict (obj : ImageButton, resFirst : Int, resSecond : Int, clickfoBtn : Boolean) :Boolean{
+        if(clickfoBtn) obj.setImageResource(resSecond)
+        else obj.setImageResource(resFirst)
+        return clickfoBtn
     }
 }
