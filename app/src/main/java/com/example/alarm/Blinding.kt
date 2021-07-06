@@ -1,7 +1,6 @@
 package com.example.alarm
 
 import android.app.Activity
-import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -10,39 +9,45 @@ class Blinding {
     private var clikCheack = false
 
 
-    fun blind (obj : ImageView, activity: Activity){
+    fun blind (obj : ImageView, activity: Activity,objBtn : ImageButton,resOn : Int,resOff : Int){
         clikCheack = !clikCheack
         Thread{
             while (clikCheack){
-               activity.runOnUiThread() {
+               activity.runOnUiThread {
                     if (obj.visibility == View.INVISIBLE){
                         obj.visibility = View.VISIBLE
+                        objBtn.setImageResource(resOn)
                     }else{
                         obj.visibility = View.INVISIBLE
+                        objBtn.setImageResource(resOff)
                     }
                 }
                 Thread.sleep(500)
             }
             activity.runOnUiThread{obj.visibility = View.INVISIBLE}
+            objBtn.setImageResource(resOff)
         }.start()
     }
-    fun blindDoble(obj1 : ImageView,obj2 : ImageView, activity: Activity,){
+    fun blindDoble(obj1 : ImageView,obj2 : ImageView, activity: Activity, objBtn : ImageButton,resOn : Int,resOff : Int){
         clikCheack = !clikCheack
         Thread{
             while (clikCheack){
-                activity.runOnUiThread() {
+                activity.runOnUiThread {
                     if ((obj1.visibility == View.INVISIBLE)&&(obj2.visibility == View.INVISIBLE)){
                         obj1.visibility = View.VISIBLE
                         obj2.visibility = View.VISIBLE
+                        objBtn.setImageResource(resOn)
                     }else if ((obj1.visibility == View.VISIBLE)&&(obj2.visibility == View.VISIBLE)){
                         obj1.visibility = View.INVISIBLE
                         obj2.visibility = View.INVISIBLE
+                        objBtn.setImageResource(resOff)
                     }
                 }
                 Thread.sleep(500)
             }
             activity.runOnUiThread{obj1.visibility = View.INVISIBLE}
             activity.runOnUiThread{obj2.visibility = View.INVISIBLE}
+            objBtn.setImageResource(resOff)
         }.start()
     }
     fun blindONorOFF (obj : ImageView){
@@ -52,9 +57,12 @@ class Blinding {
             obj.visibility = View.INVISIBLE
         }
     }
-    fun swapPict (obj : ImageButton, resFirst : Int, resSecond : Int, clickfoBtn : Boolean) :Boolean{
+    fun swapPict (obj : ImageButton, resFirst : Int, resSecond : Int, clickfoBtn : Boolean){
         if(clickfoBtn) obj.setImageResource(resSecond)
         else obj.setImageResource(resFirst)
-        return clickfoBtn
+    }
+    fun swapPict (obj : ImageView, resFirst : Int, resSecond : Int, clickfoBtn : Boolean){
+        if(clickfoBtn) obj.setImageResource(resSecond)
+        else obj.setImageResource(resFirst)
     }
 }

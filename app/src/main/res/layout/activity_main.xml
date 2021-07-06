@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:id="@+id/linearLayout3"
+            android:id="@+id/lineOne"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -54,7 +54,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
+            android:id="@+id/lineTwo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -83,13 +83,49 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:scaleType="centerInside"
                 android:background="@android:color/transparent"
+                android:scaleType="centerInside"
                 app:srcCompat="@drawable/low_beam_dark" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout4"
+            android:id="@+id/lineThree"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/ib_front_foglights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/front_foglights_dark" />
+
+            <ImageButton
+                android:id="@+id/ib_Signal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/sound_signal_blak" />
+
+            <ImageButton
+                android:id="@+id/ib_back_foglights"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                app:srcCompat="@drawable/rear_foglights_dark" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lineFour"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="5"
@@ -111,8 +147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:visibility="invisible"
-                        app:srcCompat="@drawable/asset__17_" />
+                        app:srcCompat="@drawable/charge_dark" />
 
                     <ImageView
                         android:id="@+id/iv_Key"
@@ -127,8 +162,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:visibility="invisible"
-                        app:srcCompat="@drawable/asset__9_" />
+                        android:layout_gravity="end"
+                        app:srcCompat="@drawable/fuel_dark" />
                 </LinearLayout>
 
                 <TextView
@@ -164,6 +199,28 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:layout_weight="3">
+
+            <ImageView
+                android:id="@+id/iv_back_fog"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/rear_foglights_tv" />
+
+            <ImageView
+                android:id="@+id/iv_front_fog"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/front_foglights_tv" />
 
             <ImageView
                 android:id="@+id/iv_RunningStop"
@@ -264,8 +321,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:visibility="invisible"
-                    app:srcCompat="@drawable/asset__7_" />
+                    app:srcCompat="@drawable/engine_temperature_dark" />
 
                 <ImageButton
                     android:id="@+id/ib_Window"
@@ -282,7 +338,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/asset__8_" />
+                    app:srcCompat="@drawable/hand_brake_dark" />
             </LinearLayout>
 
             <TextView
@@ -322,15 +378,17 @@
                 android:layout_weight="1"
                 android:scaleType="centerInside"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/asset__4_" />
+                app:srcCompat="@drawable/start_btn" />
 
             <ImageButton
                 android:id="@+id/ib_Lock"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
                 app:srcCompat="@drawable/asset__20_" />
         </LinearLayout>
     </LinearLayout>
