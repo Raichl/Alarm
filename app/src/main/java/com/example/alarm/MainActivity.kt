@@ -1,5 +1,6 @@
 package com.example.alarm
 
+import android.animation.ValueAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
         val ibLeft : ImageButton = findViewById(R.id.ib_left)
         val ivLeft : ImageView = findViewById(R.id.iv_Left)
         val leftON = R.drawable.leftbtn
@@ -29,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true },TIME)
             blinding.blind(ivLeft,this,ibLeft,leftON,leftOff)
         }
+        val animator = AnimatorS
 
         val ibRight : ImageButton = findViewById(R.id.ib_right)
         val ivRight : ImageView = findViewById(R.id.iv_Right)
@@ -144,23 +147,42 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+        val ivCarTint : ImageView = findViewById(R.id.ivCarTint)
+
+        if (intent.getStringExtra("carTitle")!=null){
+            val carType = intent.getStringExtra("carTitle")
+            val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
+            when (carType){
+                carTypeArray[0] -> {
+                    ivRunningStop.setImageResource(R.drawable.mercedes_stop)
+                    ivLowBeam.setImageResource(R.drawable.mercedes_low_beaml)
+                    ivHighBeam.setImageResource(R.drawable.mercedes_high_beam)
+                    ivRight.setImageResource(R.drawable.mercedes_right)
+                    ivRunningl.setImageResource(R.drawable.mercedes_running_lightsl)
+                    ivLeft.setImageResource(R.drawable.mercedes_left)
+                    ivCarTint.setImageResource(R.drawable.mercedes_car_model)
+                }
+                carTypeArray[1] -> {
+                    ivRunningStop.setImageResource(R.drawable.mustang_stop)
+                    ivLowBeam.setImageResource(R.drawable.mustang_low_beam)
+                    ivHighBeam.setImageResource(R.drawable.mustang_high_beam)
+                    ivRight.setImageResource(R.drawable.mustang_right)
+                    ivRunningl.setImageResource(R.drawable.mustang_running_lightsl)
+                    ivLeft.setImageResource(R.drawable.mustang_left)
+                    ivCarTint.setImageResource(R.drawable.mustang_car_model)
+                    // ivFrontFog.setImageResource(R.drawable.mustang_car_model)
+                    //ivBackFog.setImageResource(R.drawable.mustang_car_model)
+                }
+            }
+        }
+
 
     }
 
     fun openSettings(view: View) {
         intent = Intent(this,Settings::class.java)
         startActivity(intent)
+        this.finish()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
-        val carType = intent.getStringExtra("carTitle")
-        val swaper = SwapHelper()
-
-
-        swaper.swapCarType(carType!!,)
-
-    }
 }
