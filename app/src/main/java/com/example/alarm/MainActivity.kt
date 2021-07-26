@@ -1,5 +1,6 @@
 package com.example.alarm
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -15,11 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val blinding = Blinding()
 
+        val TIME : Long = (1 * 1000)/2
 
-
-        val ibWindow : ImageButton = findViewById(R.id.ib_Window)
-        val ibTrunk : ImageButton = findViewById(R.id.ib_Trunk)
-        val ibLock : ImageButton = findViewById(R.id.ib_Lock)
 
 
         val ibLeft : ImageButton = findViewById(R.id.ib_left)
@@ -28,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val leftOff = R.drawable.left_dark
         ibLeft.setOnClickListener{
             ibLeft.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true },1000)
+            Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true },TIME)
             blinding.blind(ivLeft,this,ibLeft,leftON,leftOff)
         }
 
@@ -38,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         val rightOff = R.drawable.right_dark
         ibRight.setOnClickListener{
             ibRight.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibRight.isClickable = true },1000)
+            Handler(Looper.getMainLooper()).postDelayed({ ibRight.isClickable = true },TIME)
             blinding.blind(ivRight,this,ibRight,rightON,rightOff)
         }
 
@@ -47,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val lowEmergencyOff = R.drawable.emergency_gang_dark
         ibEmergency.setOnClickListener{
             ibEmergency.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibEmergency.isClickable = true },1000)
+            Handler(Looper.getMainLooper()).postDelayed({ ibEmergency.isClickable = true },TIME)
             blinding.blindDoble(ivLeft,ivRight,this,ibEmergency,lowEmergencyON,lowEmergencyOff)
         }
 
@@ -146,6 +144,23 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+
+    }
+
+    fun openSettings(view: View) {
+        intent = Intent(this,Settings::class.java)
+        startActivity(intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
+        val carType = intent.getStringExtra("carTitle")
+        val swaper = SwapHelper()
+
+
+        swaper.swapCarType(carType!!,)
 
     }
 }

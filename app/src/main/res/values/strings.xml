@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Alarm</string>
     <string name="test">test</string>
+
+    <string-array name="spinnerCarType">
+        <item>Mercedece</item>
+        <item>Mustang</item>
+    </string-array>
+
+    <string-array name="backGround">
+        <item>Road</item>
+    </string-array>
 </resources>

@@ -16,6 +16,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="35dp"
+                android:layout_height="0dp"
+                android:onClick="openSettings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_share" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <LinearLayout
             android:id="@+id/lineOne"
             android:layout_width="match_parent"
@@ -124,6 +144,60 @@
 
         </LinearLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_Charge"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/test"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/tv_Temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/test"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/tv_T"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/test"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/tv_Fuel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/test"
+                    android:textColor="@color/red"
+                    android:visibility="invisible" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <LinearLayout
             android:id="@+id/lineFour"
             android:layout_width="match_parent"
@@ -131,173 +205,210 @@
             android:layout_weight="5"
             android:orientation="horizontal">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
+                android:id="@+id/linearLayout8"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="5">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:id="@+id/linearLayout8"
+                <ImageView
+                    android:id="@+id/iv_Charge"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/charge_dark" />
 
-                    <ImageView
-                        android:id="@+id/iv_Charge"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/charge_dark" />
+                <ImageView
+                    android:id="@+id/iv_Temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/engine_temperature_dark" />
 
-                    <ImageView
-                        android:id="@+id/iv_Key"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@drawable/key_dark" />
-
-                    <ImageView
-                        android:id="@+id/iv_Fuel"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_gravity="end"
-                        app:srcCompat="@drawable/fuel_dark" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/tv_Fuel"
+                <ImageView
+                    android:id="@+id/tv_Tmp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/test"
-                    android:textColor="@color/red"
-                    android:visibility="invisible"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/t_dark" />
 
-                <TextView
-                    android:id="@+id/tv_Charge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="3dp"
-                    android:text="@string/test"
-                    android:textColor="@color/red"
-                    android:visibility="invisible"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/iv_Fuel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/fuel_dark" />
+            </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical">
+
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/carObj"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            android:layout_weight="3">
+            android:layout_weight="4"
+            android:background="@color/black">
 
             <ImageView
-                android:id="@+id/iv_back_fog"
-                android:layout_width="0dp"
+                android:id="@+id/iv_Back"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:visibility="invisible"
+                android:background="@color/purple_700"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="@+id/iv_RunningStop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_BarckGround"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/rear_foglights_tv" />
-
-            <ImageView
-                android:id="@+id/iv_front_fog"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/front_foglights_tv" />
+                app:srcCompat="@drawable/mercedes_background" />
 
             <ImageView
                 android:id="@+id/iv_RunningStop"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/dimensions" />
+                app:srcCompat="@drawable/mercedes_dimensions" />
 
             <ImageView
                 android:id="@+id/iv_LowBeam"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/low_beaml" />
+                app:srcCompat="@drawable/mercedes_low_beaml" />
 
             <ImageView
                 android:id="@+id/iv_HighBeam"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/high_beam" />
+                app:srcCompat="@drawable/mercedes_high_beam" />
 
             <ImageView
                 android:id="@+id/iv_Right"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/right" />
+                app:srcCompat="@drawable/mercedes_right" />
 
             <ImageView
                 android:id="@+id/iv_RunnungL"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/running_lightsl" />
+                app:srcCompat="@drawable/mercedes_running_lightsl" />
 
             <ImageView
                 android:id="@+id/iv_Left"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/left" />
+                app:srcCompat="@drawable/mercedes_left" />
 
             <ImageView
-                android:id="@+id/iv_Car"
-                android:layout_width="0dp"
+                android:id="@+id/ivCarTint"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/car_model" />
+                app:srcCompat="@drawable/mercedes_car_model" />
+
+            <ImageView
+                android:id="@+id/iv_front_fog"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mercedes_front_foglights_tv" />
+
+            <ImageView
+                android:id="@+id/iv_back_fog"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mercedes_rear_foglights_tv" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"></LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
@@ -316,12 +427,12 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/iv_Temp"
+                    android:id="@+id/iv_Key"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    app:srcCompat="@drawable/engine_temperature_dark" />
+                    app:srcCompat="@drawable/key_dark" />
 
                 <ImageButton
                     android:id="@+id/ib_Window"
@@ -341,17 +452,6 @@
                     app:srcCompat="@drawable/hand_brake_dark" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_Temp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="@string/test"
-                android:textColor="@color/red"
-                android:visibility="invisible"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -367,9 +467,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
-                app:srcCompat="@drawable/asset__5_" />
+                android:scaleType="fitCenter"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                app:srcCompat="@drawable/trunk" />
 
             <ImageButton
                 android:id="@+id/ib_Start"

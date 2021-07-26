@@ -1,6 +1,8 @@
 package com.example.alarm
 
 import android.app.Activity
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -20,7 +22,7 @@ class Blinding {
                     }else{
                         obj.visibility = View.INVISIBLE
                         objBtn.setImageResource(resOff)
-                    }
+                        }
                 }
                 Thread.sleep(500)
             }
