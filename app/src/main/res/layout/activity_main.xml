@@ -25,15 +25,19 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageButton
-                android:id="@+id/imageButton"
+                android:id="@+id/ib_OpenSetting"
                 android:layout_width="35dp"
                 android:layout_height="0dp"
+                android:backgroundTint="@android:color/transparent"
                 android:onClick="openSettings"
+                android:scaleType="centerCrop"
+                android:scaleX="3"
+                android:scaleY="3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/ic_menu_share" />
+                app:srcCompat="@drawable/customization_dark" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -266,7 +270,7 @@
                 android:id="@+id/iv_Back"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:background="@color/purple_700"
+                android:background="@color/red"
                 android:scaleType="fitCenter"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -276,7 +280,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/iv_BarckGround"
+                android:id="@+id/iv_BackGround"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:scaleType="fitCenter"
@@ -455,7 +459,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout5"
+            android:id="@+id/liner_StartLine"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="4"

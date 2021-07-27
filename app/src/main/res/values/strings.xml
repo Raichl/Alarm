@@ -2,6 +2,9 @@
     <string name="app_name">Alarm</string>
     <string name="test">test</string>
     <string name="setChange">Применить</string>
+    <string name="setColorBackground">Выбрать цвет фона</string>
+    <string name="setColorCar">Выбрать цвет машины</string>
+    <string name="boxColorSave">Сохранить настройки цвета для модели</string>
 
     <string-array name="spinnerCarType">
         <item>Mercedece</item>

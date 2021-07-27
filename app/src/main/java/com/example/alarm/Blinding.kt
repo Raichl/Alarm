@@ -4,6 +4,8 @@ import android.app.Activity
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.ImageButton
 import android.widget.ImageView
 
@@ -29,6 +31,8 @@ class Blinding {
             activity.runOnUiThread{obj.visibility = View.INVISIBLE}
             objBtn.setImageResource(resOff)
         }.start()
+
+
     }
     fun blindDoble(obj1 : ImageView,obj2 : ImageView, activity: Activity, objBtn : ImageButton,resOn : Int,resOff : Int){
         clikCheack = !clikCheack

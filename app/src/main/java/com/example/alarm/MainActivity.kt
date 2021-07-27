@@ -1,6 +1,5 @@
 package com.example.alarm
 
-import android.animation.ValueAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,12 +8,17 @@ import android.os.Looper
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
+
         val blinding = Blinding()
 
         val TIME : Long = (1 * 1000)/2
@@ -31,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true },TIME)
             blinding.blind(ivLeft,this,ibLeft,leftON,leftOff)
         }
-        val animator = AnimatorS
 
         val ibRight : ImageButton = findViewById(R.id.ib_right)
         val ivRight : ImageView = findViewById(R.id.iv_Right)
@@ -148,9 +151,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         val ivCarTint : ImageView = findViewById(R.id.ivCarTint)
+        val ivBack : ImageView = findViewById(R.id.iv_Back)
+        val ibBackground : ImageView = findViewById(R.id.iv_BackGround)
+        val lineStart : LinearLayout = findViewById(R.id.liner_StartLine)
 
-        if (intent.getStringExtra("carTitle")!=null){
-            val carType = intent.getStringExtra("carTitle")
+
+
+        val carType : String? =
+            if (intent.getStringExtra("carTitle") != null){
+            intent.getStringExtra("carTitle")
+        }else{
+            savedInstanceState?.getString("carType")
+        }
+
+        val backColor : Int? =
+            if (intent.extras?.getInt("colorCar") != null){
+            intent.extras!!.getInt("colorCar")
+        }else{
+            savedInstanceState?.getInt("colorCar")
+        }
+
+        val lineStartBackgroundColor : Int? =
+        if(carType != null){
+            intent.extras!!.getInt("linerStartColor")
+        }else{
+            savedInstanceState?.getInt("linerStartColor")
+        }
+
+        if (intent.getStringExtra("carTitle") != null){
             val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
             when (carType){
                 carTypeArray[0] -> {
@@ -161,6 +189,7 @@ class MainActivity : AppCompatActivity() {
                     ivRunningl.setImageResource(R.drawable.mercedes_running_lightsl)
                     ivLeft.setImageResource(R.drawable.mercedes_left)
                     ivCarTint.setImageResource(R.drawable.mercedes_car_model)
+                    ibBackground.setImageResource(R.drawable.mercedes_background)
                 }
                 carTypeArray[1] -> {
                     ivRunningStop.setImageResource(R.drawable.mustang_stop)
@@ -170,19 +199,28 @@ class MainActivity : AppCompatActivity() {
                     ivRunningl.setImageResource(R.drawable.mustang_running_lightsl)
                     ivLeft.setImageResource(R.drawable.mustang_left)
                     ivCarTint.setImageResource(R.drawable.mustang_car_model)
+                    ibBackground.setImageResource(R.drawable.mustang_background)
                     // ivFrontFog.setImageResource(R.drawable.mustang_car_model)
                     //ivBackFog.setImageResource(R.drawable.mustang_car_model)
                 }
             }
         }
+        if (backColor != null){
+            ivBack.setBackgroundColor(backColor)
+        }
+        if (lineStartBackgroundColor != null){
+            lineStart.setBackgroundColor(lineStartBackgroundColor)
+        }
 
+        savedInstanceState?.putString("carType",carType)
+        if (lineStartBackgroundColor != null) savedInstanceState?.putInt("linerStartColor",lineStartBackgroundColor)
+        if (backColor != null) savedInstanceState?.putInt("colorCar",backColor)
 
     }
 
     fun openSettings(view: View) {
         intent = Intent(this,Settings::class.java)
         startActivity(intent)
-        this.finish()
     }
 
 }
