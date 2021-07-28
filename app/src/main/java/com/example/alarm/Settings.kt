@@ -15,9 +15,21 @@ class Settings : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+
+
+
+
         val btnSetChange : Button = findViewById(R.id.btnSetChange)
         val spinnerCarType : Spinner = findViewById(R.id.spinnerCarType)
         val loadingLayout : ConstraintLayout = findViewById(R.id.loadingSetting)
+        var carTitle = intent.getStringExtra("carTitle")
+        val arrayCarTitle = resources.getStringArray(R.array.spinnerCarType)
+        if (carTitle != null) {
+            val spinnerStartPosition = arrayCarTitle.indexOf(carTitle)
+            spinnerCarType.setSelection(spinnerStartPosition)
+        }
+
+
 
         val ibBack : ImageButton = findViewById(R.id.ib_back)
         ibBack.setOnClickListener {
@@ -25,7 +37,7 @@ class Settings : AppCompatActivity() {
         }
 
         val btnSetColorBackground : Button = findViewById(R.id.btnSetColor)
-        var linerStartColor = 0
+        var linerStartColor = intent.extras!!.getInt("linerStartColor")
 
         btnSetColorBackground.setOnClickListener {
             ColorPickerDialogBuilder
@@ -42,8 +54,9 @@ class Settings : AppCompatActivity() {
                 .show()
         }
 
-        var colorCar = 0
         val btnSetColorCar : Button = findViewById(R.id.btnChangeColorcCar)
+        var colorCar = intent.extras!!.getInt("colorCar")
+
         btnSetColorCar.setOnClickListener {
             ColorPickerDialogBuilder
                 .with(this)
@@ -60,17 +73,20 @@ class Settings : AppCompatActivity() {
         }
 
 
+
         val spinnerBackground : Spinner = findViewById(R.id.spinnerBackground)
         val backgroundName = spinnerBackground.selectedItem.toString()
         intent.putExtra("backgroundName",backgroundName)
 
 
+
+
         btnSetChange.setOnClickListener {
             loadingLayout.visibility = ConstraintLayout.VISIBLE
             val intent = Intent(this,MainActivity::class.java)
-            val carTitle = spinnerCarType.selectedItem.toString()
-            if (colorCar !=0 ) intent.putExtra("colorCar",colorCar)
-            if (linerStartColor !=0 ) intent.putExtra("linerStartColor",linerStartColor)
+            carTitle = spinnerCarType.selectedItem.toString()
+            intent.putExtra("colorCar",colorCar)
+            intent.putExtra("linerStartColor",linerStartColor)
             intent.putExtra("carTitle",carTitle)
             startActivity(intent)
         }

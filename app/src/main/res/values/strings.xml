@@ -9,6 +9,7 @@
     <string-array name="spinnerCarType">
         <item>Mercedece</item>
         <item>Mustang</item>
+        <item>Rolls royce</item>
     </string-array>
 
     <string-array name="backGround">

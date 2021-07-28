@@ -15,6 +15,57 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator" />
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_back">
+
+        <Spinner
+            android:id="@+id/spinnerCarType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/spinnerCarType" />
+
+        <Spinner
+            android:id="@+id/spinnerBackground"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:entries="@array/backGround" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/boxColorSave" />
+
+        <Button
+            android:id="@+id/btnChangeColorcCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setColorCar" />
+
+        <Button
+            android:id="@+id/btnSetColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setColorBackground" />
+
+        <Button
+            android:id="@+id/btnSetChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setChange" />
+    </LinearLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loadingSetting"
         android:layout_width="match_parent"
@@ -37,51 +88,4 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_back">
-
-        <Spinner
-            android:id="@+id/spinnerCarType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/spinnerCarType" />
-
-        <Spinner
-            android:id="@+id/spinnerBackground"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/backGround" />
-
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/boxColorSave" />
-
-        <Button
-            android:id="@+id/btnSetColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/setColorBackground" />
-
-        <Button
-            android:id="@+id/btnChangeColorcCar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/setColorCar" />
-
-        <Button
-            android:id="@+id/btnSetChange"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/setChange" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

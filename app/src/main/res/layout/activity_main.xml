@@ -29,7 +29,6 @@
                 android:layout_width="35dp"
                 android:layout_height="0dp"
                 android:backgroundTint="@android:color/transparent"
-                android:onClick="openSettings"
                 android:scaleType="centerCrop"
                 android:scaleX="3"
                 android:scaleY="3"
@@ -251,19 +250,11 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/carObj"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:layout_weight="3.5"
             android:background="@color/black">
 
             <ImageView
@@ -271,7 +262,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/red"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -283,7 +274,7 @@
                 android:id="@+id/iv_BackGround"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -295,7 +286,7 @@
                 android:id="@+id/iv_RunningStop"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -308,7 +299,7 @@
                 android:id="@+id/iv_LowBeam"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -321,7 +312,7 @@
                 android:id="@+id/iv_HighBeam"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -334,7 +325,7 @@
                 android:id="@+id/iv_Right"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -347,7 +338,7 @@
                 android:id="@+id/iv_RunnungL"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -360,7 +351,7 @@
                 android:id="@+id/iv_Left"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -373,7 +364,7 @@
                 android:id="@+id/ivCarTint"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -382,10 +373,62 @@
                 app:srcCompat="@drawable/mercedes_car_model" />
 
             <ImageView
+                android:id="@+id/iv_pl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mercedes_c_p_l" />
+
+            <ImageView
+                android:id="@+id/iv_pr"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mercedes_c_p_r" />
+
+            <ImageView
+                android:id="@+id/iv_zl"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mercedes_c_z_l" />
+
+            <ImageView
+                android:id="@+id/iv_zr"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitXY"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="1.5:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mercedes_c_z_r" />
+
+            <ImageView
                 android:id="@+id/iv_front_fog"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -398,7 +441,7 @@
                 android:id="@+id/iv_back_fog"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scaleType="fitCenter"
+                android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -407,12 +450,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/mercedes_rear_foglights_tv" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="5"
-            android:orientation="vertical"></LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
