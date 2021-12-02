@@ -6,6 +6,11 @@
     <string name="setColorCar">Выбрать цвет машины</string>
     <string name="boxColorSave">Сохранить настройки цвета для модели</string>
 
+    <string name="connectionError">Ошибка соединения</string>
+    <string name="connectionSuccess">Соединение успешно</string>
+
+    <string name="specialButton">Кнопка взаимодействия</string>
+
     <string-array name="spinnerCarType">
         <item>Mercedece</item>
         <item>Mustang</item>

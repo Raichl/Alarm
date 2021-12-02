@@ -1,15 +1,24 @@
 package com.example.alarm
 
+import android.app.Dialog
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.*
 
 class MainActivity : AppCompatActivity() {
+    private val bluetooth = Bluetooth(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -312,7 +321,70 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("linerStartColor",lineStartBackgroundColor)
             startActivity(intent)
         }
+
+
+        val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
+        registerReceiver(mReceiver,filter)
+        val ibBluetooth = findViewById<ImageButton>(R.id.ibBluetooth)
+
+        ibBluetooth.setOnClickListener{
+            if(bluetooth.cheackAdapter()){
+                val dialogDevice = Dialog(this)
+                dialogDevice.setContentView(R.layout.select_bluetooth_connection)
+                dialogDevice.window?.setBackgroundDrawableResource(R.color.Transparent)
+                val linearDevices = dialogDevice.findViewById<LinearLayout>(R.id.linearBluetoothDevice)
+                val devices = bluetooth.getBoundedDevices()
+
+                for (device in devices){
+                    val deviceInfoView = layoutInflater.inflate(R.layout.bluetooth_device,linearDevices,false)
+                    val name = deviceInfoView.findViewById<TextView>(R.id.tvDeviceName)
+                    val address = deviceInfoView.findViewById<TextView>(R.id.tvDeviceAdress)
+                    name.text = device.name
+                    address.text = device.address
+                    linearDevices.addView(deviceInfoView)
+
+                    deviceInfoView.setOnClickListener {
+                        dialogDevice.dismiss()
+                        val socket = ConnectThread().connect(device)
+                        if (socket != null){
+                            ConnectThread().writeData("Hi Chef",socket)
+                            Toast.makeText(this, getString(R.string.connectionSuccess), Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            Toast.makeText(this, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
+                dialogDevice.show()
+
+            }
+
+
+
+        }
     }
+
+    private val deviceList : ArrayList<BluetoothDevice> = ArrayList()
+
+    private val mReceiver = object : BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+
+            when(intent?.action){
+                BluetoothDevice.ACTION_FOUND -> {
+                    val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE) !!
+                    deviceList.add(device)
+                }
+            }
+        }
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(mReceiver)
+    }
+
 
 }
 

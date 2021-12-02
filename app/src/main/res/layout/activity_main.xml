@@ -29,6 +29,7 @@
                 android:layout_width="35dp"
                 android:layout_height="0dp"
                 android:backgroundTint="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerCrop"
                 android:scaleX="3"
                 android:scaleY="3"
@@ -37,6 +38,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/customization_dark" />
+
+            <ImageButton
+                android:id="@+id/ibBluetooth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/specialButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@android:drawable/alert_dark_frame" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
@@ -53,8 +63,11 @@
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:clickable="true"
+                android:contentDescription="@string/specialButton"
+                android:focusable="true"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/left_dark" />
+                app:srcCompat="@drawable/left_dark"
+                tools:ignore="NestedWeights" />
 
             <ImageButton
                 android:id="@+id/ib_Emergency"
@@ -62,6 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/emergency_gang_dark" />
 
@@ -71,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/right_dark" />
 
@@ -89,8 +104,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/high_beam_dark" />
+                app:srcCompat="@drawable/high_beam_dark"
+                tools:ignore="NestedWeights" />
 
             <ImageButton
                 android:id="@+id/ib_dimensions"
@@ -98,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/running_lights_dark" />
 
@@ -107,6 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/low_beam_dark" />
         </LinearLayout>
@@ -124,8 +143,10 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/front_foglights_dark" />
+                app:srcCompat="@drawable/front_foglights_dark"
+                tools:ignore="NestedWeights" />
 
             <ImageButton
                 android:id="@+id/ib_Signal"
@@ -133,6 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/sound_signal_blak" />
 
@@ -142,6 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="centerInside"
                 app:srcCompat="@drawable/rear_foglights_dark" />
 
@@ -214,13 +237,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
 
                 <ImageView
                     android:id="@+id/iv_Charge"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:contentDescription="@string/specialButton"
                     app:srcCompat="@drawable/charge_dark" />
 
                 <ImageView
@@ -228,6 +253,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:contentDescription="@string/specialButton"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/engine_temperature_dark" />
 
@@ -236,6 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:contentDescription="@string/specialButton"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/t_dark" />
 
@@ -245,6 +272,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="end"
                     android:layout_weight="1"
+                    android:contentDescription="@string/specialButton"
                     app:srcCompat="@drawable/fuel_dark" />
             </LinearLayout>
 
@@ -262,6 +290,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:background="@color/red"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -274,6 +303,7 @@
                 android:id="@+id/iv_BackGround"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -286,6 +316,7 @@
                 android:id="@+id/iv_RunningStop"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -299,6 +330,7 @@
                 android:id="@+id/iv_LowBeam"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -312,6 +344,7 @@
                 android:id="@+id/iv_HighBeam"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -325,6 +358,7 @@
                 android:id="@+id/iv_Right"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -338,6 +372,7 @@
                 android:id="@+id/iv_RunnungL"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -351,6 +386,7 @@
                 android:id="@+id/iv_Left"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -364,6 +400,7 @@
                 android:id="@+id/ivCarTint"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1.5:1"
@@ -376,6 +413,7 @@
                 android:id="@+id/iv_pl"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -389,6 +427,7 @@
                 android:id="@+id/iv_pr"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -402,6 +441,7 @@
                 android:id="@+id/iv_zl"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -415,6 +455,7 @@
                 android:id="@+id/iv_zr"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -428,6 +469,7 @@
                 android:id="@+id/iv_front_fog"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -441,6 +483,7 @@
                 android:id="@+id/iv_back_fog"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitXY"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -472,6 +515,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:contentDescription="@string/specialButton"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/key_dark" />
 
@@ -480,8 +524,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:scaleType="centerInside"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/specialButton"
+                    android:scaleType="centerInside"
                     app:srcCompat="@drawable/asset__6_" />
 
                 <ImageView
@@ -489,6 +534,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:contentDescription="@string/specialButton"
                     android:scaleType="centerInside"
                     app:srcCompat="@drawable/hand_brake_dark" />
             </LinearLayout>
@@ -509,18 +555,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
                 android:scaleType="fitCenter"
                 android:scaleX="0.7"
                 android:scaleY="0.7"
-                app:srcCompat="@drawable/trunk" />
+                app:srcCompat="@drawable/trunk"
+                tools:ignore="NestedWeights" />
 
             <ImageButton
                 android:id="@+id/ib_Start"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:scaleType="centerInside"
                 android:background="@android:color/transparent"
+                android:contentDescription="@string/specialButton"
+                android:scaleType="centerInside"
                 app:srcCompat="@drawable/start_btn" />
 
             <ImageButton
@@ -532,7 +581,8 @@
                 android:scaleType="centerInside"
                 android:scaleX="0.5"
                 android:scaleY="0.5"
-                app:srcCompat="@drawable/asset__20_" />
+                app:srcCompat="@drawable/asset__20_"
+                tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>
 
