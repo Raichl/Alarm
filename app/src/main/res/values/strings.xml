@@ -8,8 +8,26 @@
 
     <string name="connectionError">Ошибка соединения</string>
     <string name="connectionSuccess">Соединение успешно</string>
-
+    <string name="connectionLost">Нет соединения</string>
     <string name="specialButton">Кнопка взаимодействия</string>
+
+
+    <string name="emergency_gang">emergency_gang</string>
+    <string name="front_foglights">front_foglights</string>
+    <string name="hand_brake">hand_brake</string>
+    <string name="high_beam_btn">high_beam_btn</string>
+    <string name="key">key</string>
+    <string name="leftbtn">leftbtn</string>
+    <string name="low_beam">low_beam</string>
+    <string name="rear_foglights">rear_foglights</string>
+    <string name="rightbtn">rightbtn</string>
+    <string name="running_lights">running_lights</string>
+    <string name="sound_signal">sound_signal</string>
+    <string name="start_btn">start_btn</string>
+    <string name="window">window</string>
+
+
+
 
     <string-array name="spinnerCarType">
         <item>Mercedece</item>

@@ -2,7 +2,6 @@ package com.example.alarm
 
 import android.app.Dialog
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothSocket
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -12,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.View
 import android.widget.*
+
 
 class MainActivity : AppCompatActivity() {
     private val bluetooth = Bluetooth(this)
@@ -25,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
         var carType = carTypeArray[0]
+
+
         if (intent.getStringExtra("carTitle") != null)
             carType = intent.getStringExtra("carTitle")
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         val blinding = Blinding()
 
-        val TIME: Long = (1 * 1000) / 2
+        val whaitTime: Long = (1 * 1000) / 2
 
 
         val ibLeft: ImageButton = findViewById(R.id.ib_left)
@@ -51,8 +52,9 @@ class MainActivity : AppCompatActivity() {
         val leftON = R.drawable.leftbtn
         val leftOff = R.drawable.left_dark
         ibLeft.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.leftbtn),BluetoothConnection.socket!!)
             ibLeft.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true }, TIME)
+            Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true }, whaitTime)
             blinding.blind(ivLeft, this, ibLeft, leftON, leftOff)
         }
 
@@ -61,8 +63,9 @@ class MainActivity : AppCompatActivity() {
         val rightON = R.drawable.rightbtn
         val rightOff = R.drawable.right_dark
         ibRight.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.rightbtn),BluetoothConnection.socket!!)
             ibRight.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibRight.isClickable = true }, TIME)
+            Handler(Looper.getMainLooper()).postDelayed({ ibRight.isClickable = true }, whaitTime)
             blinding.blind(ivRight, this, ibRight, rightON, rightOff)
         }
 
@@ -70,8 +73,9 @@ class MainActivity : AppCompatActivity() {
         val lowEmergencyON = R.drawable.emergency_gang
         val lowEmergencyOff = R.drawable.emergency_gang_dark
         ibEmergency.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.emergency_gang),BluetoothConnection.socket!!)
             ibEmergency.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibEmergency.isClickable = true }, TIME)
+            Handler(Looper.getMainLooper()).postDelayed({ ibEmergency.isClickable = true }, whaitTime)
             blinding.blindDoble(ivLeft, ivRight, this, ibEmergency, lowEmergencyON, lowEmergencyOff)
         }
 
@@ -81,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         val lowBeamOff = R.drawable.low_beam_dark
         var clickCheakLowBeam = false
         ibLowBeam.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.low_beam),BluetoothConnection.socket!!)
             blinding.blindONorOFF(ivLowBeam)
             blinding.swapPict(ibLowBeam, lowBeamON, lowBeamOff, clickCheakLowBeam)
             clickCheakLowBeam = !clickCheakLowBeam
@@ -92,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         val highBeamOff = R.drawable.high_beam_dark
         var clickCheakHighBeam = false
         ibHighBeam.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.high_beam_btn),BluetoothConnection.socket!!)
             blinding.blindONorOFF(ivHighBeam)
             blinding.swapPict(ibHighBeam, highBeamON, highBeamOff, clickCheakHighBeam)
             clickCheakHighBeam = !clickCheakHighBeam
@@ -104,6 +110,7 @@ class MainActivity : AppCompatActivity() {
         val dimensionsIconSecond = R.drawable.running_lights
         var clickCheakDimensions = false
         ibDimensions.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.running_lights),BluetoothConnection.socket!!)
             blinding.blindONorOFF(ivRunningStop)
             blinding.blindONorOFF(ivRunningl)
             blinding.swapPict(
@@ -121,6 +128,7 @@ class MainActivity : AppCompatActivity() {
         val ivFrontFog: ImageView = findViewById(R.id.iv_front_fog)
         var clickCheakFrontFoglights = false
         ibFrontFoglights.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.front_foglights),BluetoothConnection.socket!!)
             blinding.blindONorOFF(ivFrontFog)
             clickCheakFrontFoglights = !clickCheakFrontFoglights
             blinding.swapPict(
@@ -137,6 +145,7 @@ class MainActivity : AppCompatActivity() {
         val ivBackFog: ImageView = findViewById(R.id.iv_back_fog)
         var clickCheakBackFogLights = false
         ibBackFogLights.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.rear_foglights),BluetoothConnection.socket!!)
             blinding.blindONorOFF(ivBackFog)
             clickCheakBackFogLights = !clickCheakBackFogLights
             blinding.swapPict(
@@ -164,6 +173,7 @@ class MainActivity : AppCompatActivity() {
 
         var clickCheakibStart = true
         ibStart.setOnLongClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.start_btn),BluetoothConnection.socket!!)
             ibStart.isClickable = false
             Handler(Looper.getMainLooper()).postDelayed({ ibStart.isClickable = true }, 1000)
             Handler(Looper.getMainLooper()).postDelayed({
@@ -195,6 +205,7 @@ class MainActivity : AppCompatActivity() {
         val ibWindow : ImageButton = findViewById(R.id.ib_Window)
         var clickCount = 0
         ibWindow.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.window),BluetoothConnection.socket!!)
             when (clickCount){
                 0 ->{
                     when (carType) {
@@ -324,6 +335,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
         registerReceiver(mReceiver,filter)
         val ibBluetooth = findViewById<ImageButton>(R.id.ibBluetooth)
 
@@ -347,12 +359,15 @@ class MainActivity : AppCompatActivity() {
                         dialogDevice.dismiss()
                         val socket = ConnectThread().connect(device)
                         if (socket != null){
+                            BluetoothConnection.socket = socket
+                            BluetoothConnection.device = device
                             ConnectThread().writeData("Hi Chef",socket)
                             Toast.makeText(this, getString(R.string.connectionSuccess), Toast.LENGTH_SHORT).show()
 
                         }else{
                             Toast.makeText(this, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
                         }
+                        updateConnectionInfo()
                     }
                 }
 
@@ -375,16 +390,55 @@ class MainActivity : AppCompatActivity() {
                     val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE) !!
                     deviceList.add(device)
                 }
+                BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
+                    BluetoothConnection.clearConnection()
+                    updateConnectionInfo()
+                }
             }
         }
     }
 
+
+    private val tvConnectionDeviceName:TextView by lazy { findViewById(R.id.tvDeviceName) }
+    private val tvConnectionDeviceAddress:TextView by lazy { findViewById(R.id.tvDeviceAdress) }
+
+    private fun updateConnectionInfo(){
+        val name:String
+        val address: String
+        if(BluetoothConnection.device != null && BluetoothConnection.socket != null ){
+            name = BluetoothConnection.device!!.name
+            address = BluetoothConnection.device!!.address
+        }else{
+            name = getString(R.string.connectionLost)
+            address = ""
+        }
+        tvConnectionDeviceName.text = name
+        tvConnectionDeviceAddress.text = address
+
+    }
+    private fun connectionCheack():Boolean{
+        val device = BluetoothConnection.device
+        val socket = BluetoothConnection.socket
+
+        return if(device != null && socket != null ){
+            if (device.bondState != BluetoothDevice.BOND_BONDED){
+                BluetoothConnection.clearConnection()
+                updateConnectionInfo()
+                false
+
+            }else true
+
+        }else false
+    }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mReceiver)
     }
 
+    override fun onResume() {
+        super.onResume()
+    }
 
 }
 
