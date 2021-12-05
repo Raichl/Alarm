@@ -1,8 +1,8 @@
 package com.example.alarm
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Spinner
@@ -14,14 +14,20 @@ class Settings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-
-
-
-
+        val db = DbManager(this)
+        db.openDb()
 
         val btnSetChange : Button = findViewById(R.id.btnSetChange)
+        val background = findViewById<ConstraintLayout>(R.id.SettinMainLaoyt)
+
         val spinnerCarType : Spinner = findViewById(R.id.spinnerCarType)
-        val loadingLayout : ConstraintLayout = findViewById(R.id.loadingSetting)
+        val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
+        spinnerCarType.adapter = ArrayAdapter(this,R.layout.lining_by_spinners,carTypeArray)
+        val spinnerBackground : Spinner = findViewById(R.id.spinnerBackground)
+        val backgroundArray = resources.getStringArray(R.array.backGround)
+        spinnerBackground.adapter = ArrayAdapter(this,R.layout.lining_by_spinners,backgroundArray)
+
+
         var carTitle = intent.getStringExtra("carTitle")
         val arrayCarTitle = resources.getStringArray(R.array.spinnerCarType)
         if (carTitle != null) {
@@ -37,7 +43,19 @@ class Settings : AppCompatActivity() {
         }
 
         val btnSetColorBackground : Button = findViewById(R.id.btnSetColor)
-        var linerStartColor = intent.extras!!.getInt("linerStartColor")
+        var linerStartColor = if(Setting.lineStartColor != null) Setting.lineStartColor!!
+            else intent.extras!!.getInt("linerStartColor")
+
+        val btnSetColorCar : Button = findViewById(R.id.btnChangeColorcCar)
+        var colorCar = if (Setting.backColor != null) Setting.backColor!!
+        else intent.extras!!.getInt("colorCar")
+
+
+        btnSetColorCar.setBackgroundColor(colorCar)
+        btnSetChange.setBackgroundColor(colorCar)
+        btnSetColorBackground.setBackgroundColor(colorCar)
+        background.setBackgroundColor(linerStartColor)
+
 
         btnSetColorBackground.setOnClickListener {
             ColorPickerDialogBuilder
@@ -48,14 +66,12 @@ class Settings : AppCompatActivity() {
                 .lightnessSliderOnly()
                 .setPositiveButton("ok") { _, colorNumb, _ ->
                     linerStartColor = colorNumb
+                    background.setBackgroundColor(colorNumb)
                 }
                 .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
                 .build()
                 .show()
         }
-
-        val btnSetColorCar : Button = findViewById(R.id.btnChangeColorcCar)
-        var colorCar = intent.extras!!.getInt("colorCar")
 
         btnSetColorCar.setOnClickListener {
             ColorPickerDialogBuilder
@@ -66,35 +82,23 @@ class Settings : AppCompatActivity() {
                 .lightnessSliderOnly()
                 .setPositiveButton("ok") { _, colorNumb, _ ->
                     colorCar = colorNumb
+                    btnSetColorCar.setBackgroundColor(colorNumb)
+                    btnSetChange.setBackgroundColor(colorNumb)
+                    btnSetColorBackground.setBackgroundColor(colorNumb)
                 }
                 .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
                 .build()
                 .show()
         }
 
-
-
-        val spinnerBackground : Spinner = findViewById(R.id.spinnerBackground)
-        val backgroundName = spinnerBackground.selectedItem.toString()
-        intent.putExtra("backgroundName",backgroundName)
-
-
-
-
         btnSetChange.setOnClickListener {
-            loadingLayout.visibility = ConstraintLayout.VISIBLE
-            val intent = Intent(this,MainActivity::class.java)
             carTitle = spinnerCarType.selectedItem.toString()
-            intent.putExtra("colorCar",colorCar)
-            intent.putExtra("linerStartColor",linerStartColor)
-            intent.putExtra("carTitle",carTitle)
-            startActivity(intent)
-        }
-        }
+            Setting.backColor = colorCar
+            Setting.lineStartColor = linerStartColor
+            Setting.selectedCar = carTitle
 
-    override fun onResume() {
-        super.onResume()
-        val loadingLayout : ConstraintLayout = findViewById(R.id.loadingSetting)
-        loadingLayout.visibility = ConstraintLayout.INVISIBLE
+            db.updateSaves(SavesInfo(Setting.selectedCar,Setting.lineStartColor,Setting.backColor))
+            this.finish()
+        }
     }
-    }
+}

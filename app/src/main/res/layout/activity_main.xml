@@ -53,8 +53,8 @@
 
             <ImageButton
                 android:id="@+id/ib_OpenSetting"
-                android:layout_width="35dp"
-                android:layout_height="0dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:backgroundTint="@android:color/transparent"
                 android:contentDescription="@string/specialButton"
                 android:scaleType="centerCrop"
@@ -68,12 +68,15 @@
 
             <ImageButton
                 android:id="@+id/ibBluetooth"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@color/Transparent"
                 android:contentDescription="@string/specialButton"
+                android:scaleType="fitCenter"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@android:drawable/alert_dark_frame" />
+                app:srcCompat="@drawable/bluetooth_dark" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout

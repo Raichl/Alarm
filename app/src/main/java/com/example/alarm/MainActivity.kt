@@ -13,59 +13,92 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 
 
 class MainActivity : AppCompatActivity() {
     private val bluetooth = Bluetooth(this)
 
+    private val ivRunningStop: ImageView by lazy{findViewById(R.id.iv_RunningStop)}
+    private val ivLowBeam: ImageView by lazy{findViewById(R.id.iv_LowBeam)}
+    private val ivHighBeam: ImageView by lazy{findViewById(R.id.iv_HighBeam)}
+    private val ivRight: ImageView by lazy{findViewById(R.id.iv_Right)}
+    private val ivRunningl: ImageView by lazy{findViewById(R.id.iv_RunnungL)}
+    private val ivLeft: ImageView by lazy{findViewById(R.id.iv_Left)}
+    private val ivCarTint: ImageView by lazy{findViewById(R.id.ivCarTint)}
+    private val ibBackground: ImageView by lazy{findViewById(R.id.iv_BackGround)}
+    private val ivpl: ImageView by lazy{findViewById(R.id.iv_pl)}
+    private val ivpr: ImageView by lazy{findViewById(R.id.iv_pr)}
+    private val ivzl: ImageView by lazy{findViewById(R.id.iv_zl)}
+    private val ivzr: ImageView by lazy{findViewById(R.id.iv_zr)}
+    private val ivFrontFog: ImageView by lazy{findViewById(R.id.iv_front_fog)}
+    private val ivBackFog: ImageView by lazy{findViewById(R.id.iv_back_fog)}
+
+    private val ibDimensions: ImageButton by lazy { findViewById(R.id.ib_dimensions) }
+    private val ivBack: ImageView by lazy{findViewById(R.id.iv_Back)}
+    private val lineStart: LinearLayout by lazy{findViewById(R.id.liner_StartLine)}
+    private val ibBluetooth: ImageButton by lazy { findViewById(R.id.ibBluetooth) }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val dbManager = DbManager(this)
+        dbManager.openDb()
+        val saves = dbManager.getSaves()
         val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
         var carType = carTypeArray[0]
-
-
-        if (intent.getStringExtra("carTitle") != null)
-            carType = intent.getStringExtra("carTitle")
-
-        val ivCarTint: ImageView = findViewById(R.id.ivCarTint)
-        val ivBack: ImageView = findViewById(R.id.iv_Back)
-        val ibBackground: ImageView = findViewById(R.id.iv_BackGround)
-        val lineStart: LinearLayout = findViewById(R.id.liner_StartLine)
-
         var backColor = Color.RED
-        if (intent.extras?.getInt("colorCar") != null)
-            backColor = intent.extras?.getInt("colorCar")!!
         var lineStartBackgroundColor = Color.GRAY
-        if (intent.extras?.getInt("linerStartColor") != null)
-        lineStartBackgroundColor = intent.extras?.getInt("linerStartColor")!!
 
+        if (saves?.carType != null && saves.backgroundColor != null && saves.lineColor != null){
+            carType = saves.carType
+            backColor = saves.backgroundColor!!
+            lineStartBackgroundColor = saves.lineColor!!
+        }
+        else {
+            val addSave =SavesInfo(carType,backColor,lineStartBackgroundColor)
+            dbManager.saveNew(addSave)
+        }
+
+
+
+
+
+        if (Setting.selectedCar != null) carType = Setting.selectedCar
+        else Setting.selectedCar = resources.getStringArray(R.array.spinnerCarType)[0]
+
+
+        if (Setting.backColor != null) backColor = Setting.backColor!!
+        else Setting.backColor = backColor
+
+
+        if (Setting.lineStartColor != null) lineStartBackgroundColor = Setting.lineStartColor!!
+        else Setting.lineStartColor = lineStartBackgroundColor
 
         val blinding = Blinding()
 
-        val whaitTime: Long = (1 * 1000) / 2
+        val waitTime: Long = (1 * 1000) / 2
 
 
         val ibLeft: ImageButton = findViewById(R.id.ib_left)
-        val ivLeft: ImageView = findViewById(R.id.iv_Left)
         val leftON = R.drawable.leftbtn
         val leftOff = R.drawable.left_dark
         ibLeft.setOnClickListener {
             if(connectionCheack()) ConnectThread().writeData(getString(R.string.leftbtn),BluetoothConnection.socket!!)
             ibLeft.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true }, whaitTime)
+            Handler(Looper.getMainLooper()).postDelayed({ ibLeft.isClickable = true }, waitTime)
             blinding.blind(ivLeft, this, ibLeft, leftON, leftOff)
         }
 
         val ibRight: ImageButton = findViewById(R.id.ib_right)
-        val ivRight: ImageView = findViewById(R.id.iv_Right)
         val rightON = R.drawable.rightbtn
         val rightOff = R.drawable.right_dark
         ibRight.setOnClickListener {
             if(connectionCheack()) ConnectThread().writeData(getString(R.string.rightbtn),BluetoothConnection.socket!!)
             ibRight.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibRight.isClickable = true }, whaitTime)
+            Handler(Looper.getMainLooper()).postDelayed({ ibRight.isClickable = true }, waitTime)
             blinding.blind(ivRight, this, ibRight, rightON, rightOff)
         }
 
@@ -75,12 +108,11 @@ class MainActivity : AppCompatActivity() {
         ibEmergency.setOnClickListener {
             if(connectionCheack()) ConnectThread().writeData(getString(R.string.emergency_gang),BluetoothConnection.socket!!)
             ibEmergency.isClickable = false
-            Handler(Looper.getMainLooper()).postDelayed({ ibEmergency.isClickable = true }, whaitTime)
+            Handler(Looper.getMainLooper()).postDelayed({ ibEmergency.isClickable = true }, waitTime)
             blinding.blindDoble(ivLeft, ivRight, this, ibEmergency, lowEmergencyON, lowEmergencyOff)
         }
 
         val ibLowBeam: ImageButton = findViewById(R.id.ib_low_beam)
-        val ivLowBeam: ImageView = findViewById(R.id.iv_LowBeam)
         val lowBeamON = R.drawable.low_beam
         val lowBeamOff = R.drawable.low_beam_dark
         var clickCheakLowBeam = false
@@ -92,7 +124,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         val ibHighBeam: ImageButton = findViewById(R.id.ib_High_Beam)
-        val ivHighBeam: ImageView = findViewById(R.id.iv_HighBeam)
         val highBeamON = R.drawable.high_beam_btn
         val highBeamOff = R.drawable.high_beam_dark
         var clickCheakHighBeam = false
@@ -103,9 +134,6 @@ class MainActivity : AppCompatActivity() {
             clickCheakHighBeam = !clickCheakHighBeam
         }
 
-        val ibDimensions: ImageButton = findViewById(R.id.ib_dimensions)
-        val ivRunningStop: ImageView = findViewById(R.id.iv_RunningStop)
-        val ivRunningl: ImageView = findViewById(R.id.iv_RunnungL)
         val dimensionsIconFirst = R.drawable.running_lights_dark
         val dimensionsIconSecond = R.drawable.running_lights
         var clickCheakDimensions = false
@@ -125,7 +153,6 @@ class MainActivity : AppCompatActivity() {
         val ibFrontFoglights: ImageButton = findViewById(R.id.ib_front_foglights)
         val frontFoglightsFirst = R.drawable.front_foglights_dark
         val frontFoglightsSecond = R.drawable.front_foglights
-        val ivFrontFog: ImageView = findViewById(R.id.iv_front_fog)
         var clickCheakFrontFoglights = false
         ibFrontFoglights.setOnClickListener {
             if(connectionCheack()) ConnectThread().writeData(getString(R.string.front_foglights),BluetoothConnection.socket!!)
@@ -142,7 +169,6 @@ class MainActivity : AppCompatActivity() {
         val ibBackFogLights: ImageButton = findViewById(R.id.ib_back_foglights)
         val backFogLightsFirst = R.drawable.rear_foglights_dark
         val backFogLightsSecond = R.drawable.rear_foglights
-        val ivBackFog: ImageView = findViewById(R.id.iv_back_fog)
         var clickCheakBackFogLights = false
         ibBackFogLights.setOnClickListener {
             if(connectionCheack()) ConnectThread().writeData(getString(R.string.rear_foglights),BluetoothConnection.socket!!)
@@ -193,13 +219,6 @@ class MainActivity : AppCompatActivity() {
             }, 200)
             true
         }
-
-
-
-        val ivpl: ImageView = findViewById(R.id.iv_pl)
-        val ivpr: ImageView = findViewById(R.id.iv_pr)
-        val ivzl: ImageView = findViewById(R.id.iv_zl)
-        val ivzr: ImageView = findViewById(R.id.iv_zr)
 
 
         val ibWindow : ImageButton = findViewById(R.id.ib_Window)
@@ -265,7 +284,126 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        if (carType != null) {
+        setCarSkin(carType)
+
+        ivBack.setBackgroundColor(backColor)
+
+        lineStart.setBackgroundColor(lineStartBackgroundColor)
+
+
+
+        val ibOpenSettings: ImageButton = findViewById(R.id.ib_OpenSetting)
+        ibOpenSettings.setOnClickListener {
+            intent = Intent(this, Settings::class.java)
+            intent.putExtra("carTitle",carType)
+            intent.putExtra("colorCar",backColor)
+            intent.putExtra("linerStartColor",lineStartBackgroundColor)
+            startActivity(intent)
+        }
+
+
+        val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
+        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
+        registerReceiver(mReceiver,filter)
+
+
+        ibBluetooth.setOnClickListener{
+            if(bluetooth.cheackAdapter()){
+                val dialogDevice = Dialog(this)
+                dialogDevice.setContentView(R.layout.select_bluetooth_connection)
+                dialogDevice.window?.setBackgroundDrawableResource(R.color.Transparent)
+                val linearDevices = dialogDevice.findViewById<LinearLayout>(R.id.linearBluetoothDevice)
+                val devices = bluetooth.getBoundedDevices()
+
+                for (device in devices){
+                    val deviceInfoView = layoutInflater.inflate(R.layout.bluetooth_device,linearDevices,false)
+                    val name = deviceInfoView.findViewById<TextView>(R.id.tvDeviceName)
+                    val address = deviceInfoView.findViewById<TextView>(R.id.tvDeviceAdress)
+                    name.text = device.name
+                    address.text = device.address
+                    linearDevices.addView(deviceInfoView)
+
+                    deviceInfoView.setOnClickListener {
+                        dialogDevice.dismiss()
+                        val socket = ConnectThread().connect(device)
+                        if (socket != null){
+                            BluetoothConnection.socket = socket
+                            BluetoothConnection.device = device
+                            ConnectThread().writeData("Hi Chef",socket)
+                            ibBluetooth.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.bluetooth,null))
+                            Toast.makeText(this, getString(R.string.connectionSuccess), Toast.LENGTH_SHORT).show()
+
+                        }else{
+                            Toast.makeText(this, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
+                        }
+                        updateConnectionInfo()
+                    }
+                }
+
+                dialogDevice.show()
+
+            }
+
+
+
+        }
+    }
+
+    private val deviceList : ArrayList<BluetoothDevice> = ArrayList()
+
+    private val mReceiver = object : BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+
+            when(intent?.action){
+                BluetoothDevice.ACTION_FOUND -> {
+                    val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE) !!
+                    deviceList.add(device)
+                }
+                BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
+                    BluetoothConnection.clearConnection()
+                    updateConnectionInfo()
+                    ibBluetooth.setImageDrawable(ResourcesCompat.getDrawable(resources,R.drawable.bluetooth_dark,null))
+                }
+            }
+        }
+    }
+
+
+    private val tvConnectionDeviceName:TextView by lazy { findViewById(R.id.tvDeviceName) }
+    private val tvConnectionDeviceAddress:TextView by lazy { findViewById(R.id.tvDeviceAdress) }
+
+    private fun updateConnectionInfo(){
+        val name:String
+        val address: String
+        if(BluetoothConnection.device != null && BluetoothConnection.socket != null ){
+            name = BluetoothConnection.device!!.name
+            address = BluetoothConnection.device!!.address
+        }else{
+            name = getString(R.string.connectionLost)
+            address = ""
+        }
+        tvConnectionDeviceName.text = name
+        tvConnectionDeviceAddress.text = address
+
+    }
+    private fun connectionCheack():Boolean{
+        val device = BluetoothConnection.device
+        val socket = BluetoothConnection.socket
+
+        return if(device != null && socket != null ){
+            if (device.bondState != BluetoothDevice.BOND_BONDED){
+                BluetoothConnection.clearConnection()
+                updateConnectionInfo()
+                false
+
+            }else true
+
+        }else false
+    }
+
+    private fun setCarSkin(carType:String?){
+        val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
+        if (carType != null){
             when (carType) {
                 carTypeArray[0] -> {
                     ivRunningStop.setImageResource(R.drawable.mercedes_stop)
@@ -317,126 +455,26 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        ivBack.setBackgroundColor(backColor)
-
-        lineStart.setBackgroundColor(lineStartBackgroundColor)
-
-
-
-        val ibOpenSettings: ImageButton = findViewById(R.id.ib_OpenSetting)
-        ibOpenSettings.setOnClickListener {
-            intent = Intent(this, Settings::class.java)
-            intent.putExtra("carTitle",carType)
-            intent.putExtra("colorCar",backColor)
-            intent.putExtra("linerStartColor",lineStartBackgroundColor)
-            startActivity(intent)
-        }
-
-
-        val filter = IntentFilter(BluetoothDevice.ACTION_UUID)
-        filter.addAction(BluetoothDevice.ACTION_ACL_DISCONNECTED)
-        registerReceiver(mReceiver,filter)
-        val ibBluetooth = findViewById<ImageButton>(R.id.ibBluetooth)
-
-        ibBluetooth.setOnClickListener{
-            if(bluetooth.cheackAdapter()){
-                val dialogDevice = Dialog(this)
-                dialogDevice.setContentView(R.layout.select_bluetooth_connection)
-                dialogDevice.window?.setBackgroundDrawableResource(R.color.Transparent)
-                val linearDevices = dialogDevice.findViewById<LinearLayout>(R.id.linearBluetoothDevice)
-                val devices = bluetooth.getBoundedDevices()
-
-                for (device in devices){
-                    val deviceInfoView = layoutInflater.inflate(R.layout.bluetooth_device,linearDevices,false)
-                    val name = deviceInfoView.findViewById<TextView>(R.id.tvDeviceName)
-                    val address = deviceInfoView.findViewById<TextView>(R.id.tvDeviceAdress)
-                    name.text = device.name
-                    address.text = device.address
-                    linearDevices.addView(deviceInfoView)
-
-                    deviceInfoView.setOnClickListener {
-                        dialogDevice.dismiss()
-                        val socket = ConnectThread().connect(device)
-                        if (socket != null){
-                            BluetoothConnection.socket = socket
-                            BluetoothConnection.device = device
-                            ConnectThread().writeData("Hi Chef",socket)
-                            Toast.makeText(this, getString(R.string.connectionSuccess), Toast.LENGTH_SHORT).show()
-
-                        }else{
-                            Toast.makeText(this, getString(R.string.connectionError), Toast.LENGTH_SHORT).show()
-                        }
-                        updateConnectionInfo()
-                    }
-                }
-
-                dialogDevice.show()
-
-            }
-
-
-
-        }
-    }
-
-    private val deviceList : ArrayList<BluetoothDevice> = ArrayList()
-
-    private val mReceiver = object : BroadcastReceiver(){
-        override fun onReceive(context: Context?, intent: Intent?) {
-
-            when(intent?.action){
-                BluetoothDevice.ACTION_FOUND -> {
-                    val device = intent.getParcelableExtra<BluetoothDevice>(BluetoothDevice.EXTRA_DEVICE) !!
-                    deviceList.add(device)
-                }
-                BluetoothDevice.ACTION_ACL_DISCONNECTED -> {
-                    BluetoothConnection.clearConnection()
-                    updateConnectionInfo()
-                }
-            }
-        }
-    }
-
-
-    private val tvConnectionDeviceName:TextView by lazy { findViewById(R.id.tvDeviceName) }
-    private val tvConnectionDeviceAddress:TextView by lazy { findViewById(R.id.tvDeviceAdress) }
-
-    private fun updateConnectionInfo(){
-        val name:String
-        val address: String
-        if(BluetoothConnection.device != null && BluetoothConnection.socket != null ){
-            name = BluetoothConnection.device!!.name
-            address = BluetoothConnection.device!!.address
-        }else{
-            name = getString(R.string.connectionLost)
-            address = ""
-        }
-        tvConnectionDeviceName.text = name
-        tvConnectionDeviceAddress.text = address
-
-    }
-    private fun connectionCheack():Boolean{
-        val device = BluetoothConnection.device
-        val socket = BluetoothConnection.socket
-
-        return if(device != null && socket != null ){
-            if (device.bondState != BluetoothDevice.BOND_BONDED){
-                BluetoothConnection.clearConnection()
-                updateConnectionInfo()
-                false
-
-            }else true
-
-        }else false
     }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mReceiver)
+        val dbManager = DbManager(this)
+        dbManager.closeDb()
     }
 
     override fun onResume() {
+        val carType = Setting.selectedCar
+        val backColor = Setting.backColor
+        val lineStartBackgroundColor = Setting.lineStartColor
+
+        setCarSkin(carType)
+        if (backColor != null)
+        ivBack.setBackgroundColor(backColor)
+        if (lineStartBackgroundColor != null)
+        lineStart.setBackgroundColor(lineStartBackgroundColor)
+
         super.onResume()
     }
 
