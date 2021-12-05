@@ -472,7 +472,7 @@ class MainActivity : AppCompatActivity() {
                                 ivzr.setImageResource(R.drawable.rolls_royce_c_z_r)
                             }
                         }
-                        clickCount = 0
+                        clickCount = -1
                     }
                 }
                 clickCount++
