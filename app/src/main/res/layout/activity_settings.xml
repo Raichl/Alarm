@@ -8,6 +8,45 @@
     android:background="@color/black"
     tools:context=".Settings">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBackground"
+        tools:context=".Settings">
+
+        <Button
+            android:id="@+id/btnChangeColorcCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setColorCar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:context=".Settings">
+
+        <Button
+            android:id="@+id/btnSetColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/setColorBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <ImageButton
         android:id="@+id/ib_back"
         android:layout_width="wrap_content"
@@ -16,66 +55,62 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="?attr/homeAsUpIndicator" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/ivCarColor"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        tools:srcCompat="@color/black" />
+
+    <ImageView
+        android:id="@+id/ivBackColor"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        tools:srcCompat="@color/black" />
+
+    <Spinner
+        android:id="@+id/spinnerCarType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:entries="@array/spinnerCarType"
+        android:popupBackground="@color/black50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_back">
+        app:layout_constraintTop_toBottomOf="@+id/ib_back" />
 
-        <Spinner
-            android:id="@+id/spinnerCarType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:entries="@array/spinnerCarType"
-            android:popupBackground="@color/black50" />
+    <Spinner
+        android:id="@+id/spinnerBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:entries="@array/backGround"
+        android:popupBackground="@color/black50"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCarType" />
 
-        <Spinner
-            android:id="@+id/spinnerBackground"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:entries="@array/backGround"
-            android:popupBackground="@color/black50" />
+    <Button
+        android:id="@+id/btnHandInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/input"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+        tools:layout_editor_absoluteX="16dp" />
 
-        <CheckBox
-            android:id="@+id/checkBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/boxColorSave"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btnChangeColorcCar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/setColorCar" />
-
-        <Button
-            android:id="@+id/btnSetColor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/setColorBackground" />
-
-        <Button
-            android:id="@+id/btnHandInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/input" />
-
-        <Button
-            android:id="@+id/btnSetChange"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/setChange" />
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/btnSetChange"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/setChange"
+        app:layout_constraintTop_toBottomOf="@+id/btnHandInput"
+        tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

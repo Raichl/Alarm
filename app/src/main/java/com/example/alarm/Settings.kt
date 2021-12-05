@@ -1,8 +1,11 @@
 package com.example.alarm
 
 import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.flask.colorpicker.ColorPickerView
@@ -16,7 +19,8 @@ class Settings : AppCompatActivity() {
         db.openDb()
 
         val btnSetChange : Button = findViewById(R.id.btnSetChange)
-        val background = findViewById<ConstraintLayout>(R.id.SettinMainLaoyt)
+        val ivCarColor : ImageView = findViewById(R.id.ivCarColor)
+        val ivBackColor : ImageView = findViewById(R.id.ivBackColor)
 
         val spinnerCarType : Spinner = findViewById(R.id.spinnerCarType)
         val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
@@ -28,9 +32,9 @@ class Settings : AppCompatActivity() {
 
 
         var carTitle = intent.getStringExtra("carTitle")
-        val arrayCarTitle = resources.getStringArray(R.array.spinnerCarType)
+
         if (carTitle != null) {
-            val spinnerStartPosition = arrayCarTitle.indexOf(carTitle)
+            val spinnerStartPosition = carTypeArray.indexOf(carTitle)
             spinnerCarType.setSelection(spinnerStartPosition)
         }
 
@@ -50,11 +54,8 @@ class Settings : AppCompatActivity() {
         else intent.extras!!.getInt("colorCar")
 
 
-        btnSetColorCar.setBackgroundColor(colorCar)
-        btnSetChange.setBackgroundColor(colorCar)
-        btnSetColorBackground.setBackgroundColor(colorCar)
-        background.setBackgroundColor(linerStartColor)
-        btnCreateInput.setBackgroundColor(colorCar)
+        ivCarColor.setImageDrawable(ColorDrawable(colorCar))
+        ivBackColor.setImageDrawable(ColorDrawable(linerStartColor))
 
 
         btnSetColorBackground.setOnClickListener {
@@ -66,7 +67,7 @@ class Settings : AppCompatActivity() {
                 .lightnessSliderOnly()
                 .setPositiveButton("ok") { _, colorNumb, _ ->
                     linerStartColor = colorNumb
-                    background.setBackgroundColor(colorNumb)
+                    ivBackColor.setImageDrawable(ColorDrawable(colorNumb))
                 }
                 .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
                 .build()
@@ -82,10 +83,7 @@ class Settings : AppCompatActivity() {
                 .lightnessSliderOnly()
                 .setPositiveButton("ok") { _, colorNumb, _ ->
                     colorCar = colorNumb
-                    btnSetColorCar.setBackgroundColor(colorNumb)
-                    btnSetChange.setBackgroundColor(colorNumb)
-                    btnSetColorBackground.setBackgroundColor(colorNumb)
-                    btnCreateInput.setBackgroundColor(colorNumb)
+                    ivCarColor.setImageDrawable(ColorDrawable(colorNumb))
                 }
                 .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
                 .build()
@@ -94,6 +92,7 @@ class Settings : AppCompatActivity() {
 
         btnSetChange.setOnClickListener {
             carTitle = spinnerCarType.selectedItem.toString()
+            Log.d("debug", carTitle!!)
             Setting.backColor = colorCar
             Setting.lineStartColor = linerStartColor
             Setting.selectedCar = carTitle

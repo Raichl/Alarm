@@ -13,6 +13,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.res.ResourcesCompat
 
 
@@ -39,10 +40,13 @@ class MainActivity : AppCompatActivity() {
     private val lineStart: LinearLayout by lazy{findViewById(R.id.liner_StartLine)}
     private val ibBluetooth: ImageButton by lazy { findViewById(R.id.ibBluetooth) }
     private val ibSignal: ImageButton by lazy { findViewById(R.id.ib_Signal) }
-    private val ivHandBrake: ImageButton by lazy { findViewById(R.id.iv_Hand_Brake) }
+    private val ivHandBrake: ImageView by lazy { findViewById(R.id.iv_Hand_Brake) }
     private val ibLock: ImageButton by lazy { findViewById(R.id.ib_Lock) }
     private val ibTrunk: ImageButton by lazy { findViewById(R.id.ib_Trunk) }
+    private val ibWindow : ImageButton by lazy { findViewById(R.id.ib_Window) }
 
+    private var carType = Setting.selectedCar
+    private var clickCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +55,6 @@ class MainActivity : AppCompatActivity() {
         val dbManager = DbManager(this)
         dbManager.openDb()
         val saves = dbManager.getSaves()
-        val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
-        var carType = carTypeArray[0]
         var backColor = Color.RED
         var lineStartBackgroundColor = Color.GRAY
 
@@ -62,16 +64,14 @@ class MainActivity : AppCompatActivity() {
             lineStartBackgroundColor = saves.lineColor!!
         }
         else {
-            val addSave =SavesInfo(carType,backColor,lineStartBackgroundColor)
+            val addSave = SavesInfo(carType,backColor,lineStartBackgroundColor)
             dbManager.saveNew(addSave)
         }
 
 
 
-
-
         if (Setting.selectedCar != null) carType = Setting.selectedCar
-        else Setting.selectedCar = resources.getStringArray(R.array.spinnerCarType)[0]
+        else Setting.selectedCar = carType
 
 
         if (Setting.backColor != null) backColor = Setting.backColor!!
@@ -80,6 +80,8 @@ class MainActivity : AppCompatActivity() {
 
         if (Setting.lineStartColor != null) lineStartBackgroundColor = Setting.lineStartColor!!
         else Setting.lineStartColor = lineStartBackgroundColor
+
+        setCarSkin(carType)
 
         val blinding = Blinding()
 
@@ -239,70 +241,15 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val ibWindow : ImageButton = findViewById(R.id.ib_Window)
-        var clickCount = 0
-        ibWindow.setOnClickListener {
-            if(connectionCheack()) ConnectThread().writeData(getString(R.string.window),BluetoothConnection.socket!!)
-            when (clickCount){
-                0 ->{
-                    when (carType) {
-                        carTypeArray[0] -> {ivpl.setImageResource(R.drawable.mercedes_o_p_l)}
-                        carTypeArray[1] -> {ivpl.setImageResource(R.drawable.mustang_p_l)}
-                        carTypeArray[2] -> {ivpl.setImageResource(R.drawable.rolls_royce_o_p_l)}
-                    }
-                }
-                1 -> {
-                    when (carType) {
-                        carTypeArray[0] -> {ivpr.setImageResource(R.drawable.mercedes_o_p_r)}
-                        carTypeArray[1] -> {ivpr.setImageResource(R.drawable.mustang_p_r)}
-                        carTypeArray[2] -> {ivpr.setImageResource(R.drawable.rolls_royce_o_p_r)}
-                    }
-                }
-                2 -> {
-                    when (carType) {
-                        carTypeArray[0] -> {ivzl.setImageResource(R.drawable.mercedes_o_z_l)}
-                        carTypeArray[1] -> {
-                            ivpl.setImageResource(R.drawable.mustang_c_p_l)
-                            ivpr.setImageResource(R.drawable.mustang_c_p_r)
-                            clickCount = -1
-                        }
-                        carTypeArray[2] -> {ivzl.setImageResource(R.drawable.rolls_royce_o_z_l)}
-                    }
-                }
-                3 -> {
-                    when (carType) {
-                        carTypeArray[0] -> {ivzr.setImageResource(R.drawable.mercedes_o_z_r)}
-                        carTypeArray[2] -> {ivzr.setImageResource(R.drawable.rolls_royce_o_z_r)}
-                    }
-                }
-                else -> {
-                    when (carType) {
-                        carTypeArray[0] -> {
-                            ivpl.setImageResource(R.drawable.mercedes_c_p_l)
-                            ivpr.setImageResource(R.drawable.mercedes_c_p_r)
-                            ivzl.setImageResource(R.drawable.mercedes_c_z_l)
-                            ivzr.setImageResource(R.drawable.mercedes_c_z_r)
-                        }
-                        carTypeArray[2] -> {
-                            ivpl.setImageResource(R.drawable.rolls_royce_c_p_l)
-                            ivpr.setImageResource(R.drawable.rolls_royce_c_p_r)
-                            ivzl.setImageResource(R.drawable.rolls_royce_c_z_l)
-                            ivzr.setImageResource(R.drawable.rolls_royce_c_z_r)
-
-
-                        }
-                    }
-                    clickCount = -1
-                }
-            }
-            clickCount++
-        }
 
 
 
 
 
-        setCarSkin(carType)
+
+
+
+
 
         ivBack.setBackgroundColor(backColor)
 
@@ -314,8 +261,10 @@ class MainActivity : AppCompatActivity() {
         ibOpenSettings.setOnClickListener {
             intent = Intent(this, Settings::class.java)
             intent.putExtra("carTitle",carType)
+            Toast.makeText(this, carType, Toast.LENGTH_SHORT).show()
             intent.putExtra("colorCar",backColor)
             intent.putExtra("linerStartColor",lineStartBackgroundColor)
+            clickCount = 0
             startActivity(intent)
         }
 
@@ -422,6 +371,8 @@ class MainActivity : AppCompatActivity() {
     private fun setCarSkin(carType:String?){
         val carTypeArray = resources.getStringArray(R.array.spinnerCarType)
         if (carType != null){
+            ivzl.visibility = ImageView.VISIBLE
+            ivzr.visibility = ImageView.VISIBLE
             when (carType) {
                 carTypeArray[0] -> {
                     ivRunningStop.setImageResource(R.drawable.mercedes_stop)
@@ -472,21 +423,75 @@ class MainActivity : AppCompatActivity() {
                     ivBackFog.setImageResource(R.drawable.rolls_royce_rear_foglights)
                 }
             }
+            ibWindow.setOnClickListener {
+                if(connectionCheack()) ConnectThread().writeData(getString(R.string.window),BluetoothConnection.socket!!)
+
+                when (clickCount){
+                    0 ->{
+                        when (carType) {
+                            carTypeArray[0] -> {ivpl.setImageResource(R.drawable.mercedes_o_p_l)}
+                            carTypeArray[1] -> {ivpl.setImageResource(R.drawable.mustang_p_l)}
+                            carTypeArray[2] -> {ivpl.setImageResource(R.drawable.rolls_royce_o_p_l)}
+                        }
+                    }
+                    1 -> {
+                        when (carType) {
+                            carTypeArray[0] -> {ivpr.setImageResource(R.drawable.mercedes_o_p_r)}
+                            carTypeArray[1] -> {ivpr.setImageResource(R.drawable.mustang_p_r)}
+                            carTypeArray[2] -> {ivpr.setImageResource(R.drawable.rolls_royce_o_p_r)}
+                        }
+                    }
+                    2 -> {
+                        when (carType) {
+                            carTypeArray[0] -> {ivzl.setImageResource(R.drawable.mercedes_o_z_l)}
+                            carTypeArray[1] -> {
+                                ivpl.setImageResource(R.drawable.mustang_c_p_l)
+                                ivpr.setImageResource(R.drawable.mustang_c_p_r)
+                                clickCount = -1
+                            }
+                            carTypeArray[2] -> {ivzl.setImageResource(R.drawable.rolls_royce_o_z_l)}
+                        }
+                    }
+                    3 -> {
+                        when (carType) {
+                            carTypeArray[0] -> {ivzr.setImageResource(R.drawable.mercedes_o_z_r)}
+                            carTypeArray[2] -> {ivzr.setImageResource(R.drawable.rolls_royce_o_z_r)}
+                        }
+                    }
+                    else -> {
+                        when (carType) {
+                            carTypeArray[0] -> {
+                                ivpl.setImageResource(R.drawable.mercedes_c_p_l)
+                                ivpr.setImageResource(R.drawable.mercedes_c_p_r)
+                                ivzl.setImageResource(R.drawable.mercedes_c_z_l)
+                                ivzr.setImageResource(R.drawable.mercedes_c_z_r)
+                            }
+                            carTypeArray[2] -> {
+                                ivpl.setImageResource(R.drawable.rolls_royce_c_p_l)
+                                ivpr.setImageResource(R.drawable.rolls_royce_c_p_r)
+                                ivzl.setImageResource(R.drawable.rolls_royce_c_z_l)
+                                ivzr.setImageResource(R.drawable.rolls_royce_c_z_r)
+                            }
+                        }
+                        clickCount = 0
+                    }
+                }
+                clickCount++
+            }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mReceiver)
-        val dbManager = DbManager(this)
-        dbManager.closeDb()
     }
 
     override fun onResume() {
-        val carType = Setting.selectedCar
+        carType = Setting.selectedCar
+        Toast.makeText(this, carType, Toast.LENGTH_SHORT).show()
         val backColor = Setting.backColor
         val lineStartBackgroundColor = Setting.lineStartColor
-
+        clickCount = 0
         setCarSkin(carType)
         if (backColor != null)
         ivBack.setBackgroundColor(backColor)
