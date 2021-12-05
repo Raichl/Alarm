@@ -261,7 +261,6 @@ class MainActivity : AppCompatActivity() {
         ibOpenSettings.setOnClickListener {
             intent = Intent(this, Settings::class.java)
             intent.putExtra("carTitle",carType)
-            Toast.makeText(this, carType, Toast.LENGTH_SHORT).show()
             intent.putExtra("colorCar",backColor)
             intent.putExtra("linerStartColor",lineStartBackgroundColor)
             clickCount = 0
@@ -488,7 +487,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         carType = Setting.selectedCar
-        Toast.makeText(this, carType, Toast.LENGTH_SHORT).show()
         val backColor = Setting.backColor
         val lineStartBackgroundColor = Setting.lineStartColor
         clickCount = 0
