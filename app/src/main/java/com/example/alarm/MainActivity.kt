@@ -386,8 +386,8 @@ class MainActivity : AppCompatActivity() {
                     ivpr.setImageResource(R.drawable.mercedes_c_p_r)
                     ivzl.setImageResource(R.drawable.mercedes_c_z_l)
                     ivzr.setImageResource(R.drawable.mercedes_c_z_r)
-                    ivFrontFog.setImageResource(R.drawable.mercedes_front_foglights_tv)
-                    ivBackFog.setImageResource(R.drawable.mercedes_rear_foglights_tv)
+                    ivFrontFog.setImageResource(R.drawable.mustang_front_foglights)
+                    ivBackFog.setImageResource(R.drawable.mustang_rear_foglights)
                 }
                 carTypeArray[1] -> {
                     ivRunningStop.setImageResource(R.drawable.mustang_stop)
@@ -418,8 +418,8 @@ class MainActivity : AppCompatActivity() {
                     ivpr.setImageResource(R.drawable.rolls_royce_c_p_r)
                     ivzl.setImageResource(R.drawable.rolls_royce_c_z_l)
                     ivzr.setImageResource(R.drawable.rolls_royce_c_z_r)
-                    ivFrontFog.setImageResource(R.drawable.rolls_royce_front_foglights)
-                    ivBackFog.setImageResource(R.drawable.rolls_royce_rear_foglights)
+                    ivFrontFog.setImageResource(R.drawable.mustang_front_foglights)
+                    ivBackFog.setImageResource(R.drawable.mustang_rear_foglights)
                 }
             }
             ibWindow.setOnClickListener {
