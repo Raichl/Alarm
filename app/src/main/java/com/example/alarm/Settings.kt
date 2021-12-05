@@ -1,11 +1,9 @@
 package com.example.alarm
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Spinner
+import android.widget.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
@@ -26,6 +24,7 @@ class Settings : AppCompatActivity() {
         val spinnerBackground : Spinner = findViewById(R.id.spinnerBackground)
         val backgroundArray = resources.getStringArray(R.array.backGround)
         spinnerBackground.adapter = ArrayAdapter(this,R.layout.lining_by_spinners,backgroundArray)
+        val btnCreateInput = findViewById<Button>(R.id.btnHandInput)
 
 
         var carTitle = intent.getStringExtra("carTitle")
@@ -55,6 +54,7 @@ class Settings : AppCompatActivity() {
         btnSetChange.setBackgroundColor(colorCar)
         btnSetColorBackground.setBackgroundColor(colorCar)
         background.setBackgroundColor(linerStartColor)
+        btnCreateInput.setBackgroundColor(colorCar)
 
 
         btnSetColorBackground.setOnClickListener {
@@ -85,6 +85,7 @@ class Settings : AppCompatActivity() {
                     btnSetColorCar.setBackgroundColor(colorNumb)
                     btnSetChange.setBackgroundColor(colorNumb)
                     btnSetColorBackground.setBackgroundColor(colorNumb)
+                    btnCreateInput.setBackgroundColor(colorNumb)
                 }
                 .setNegativeButton("cancel") { dialog, _ -> dialog.dismiss() }
                 .build()
@@ -99,6 +100,31 @@ class Settings : AppCompatActivity() {
 
             db.updateSaves(SavesInfo(Setting.selectedCar,Setting.lineStartColor,Setting.backColor))
             this.finish()
+        }
+
+
+        btnCreateInput.setOnClickListener {
+            val device = BluetoothConnection.device
+            val socket = BluetoothConnection.socket
+
+            if(device != null && socket != null ){
+                val inputDialog = Dialog(this)
+                inputDialog.setContentView(R.layout.iput_line)
+                inputDialog.window?.setBackgroundDrawableResource(R.color.black50)
+
+                val etInput = inputDialog.findViewById<EditText>(R.id.etInput)
+                val btnInput = inputDialog.findViewById<Button>(R.id.btnInput)
+
+                btnInput.setOnClickListener {
+                    val inputMessage = etInput.text.toString()
+                    if (inputMessage.isNotEmpty()){
+                        ConnectThread().writeData(inputMessage,socket)
+                    }
+                }
+            }else{
+                Toast.makeText(this, getString(R.string.connectionLost), Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 }

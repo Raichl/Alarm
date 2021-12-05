@@ -65,10 +65,17 @@
             android:text="@string/setColorBackground" />
 
         <Button
+            android:id="@+id/btnHandInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/input" />
+
+        <Button
             android:id="@+id/btnSetChange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/setChange" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
