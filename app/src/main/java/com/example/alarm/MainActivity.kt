@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
     private val ivBack: ImageView by lazy{findViewById(R.id.iv_Back)}
     private val lineStart: LinearLayout by lazy{findViewById(R.id.liner_StartLine)}
     private val ibBluetooth: ImageButton by lazy { findViewById(R.id.ibBluetooth) }
+    private val ibSignal: ImageButton by lazy { findViewById(R.id.ib_Signal) }
+    private val ivHandBrake: ImageButton by lazy { findViewById(R.id.iv_Hand_Brake) }
+    private val ibLock: ImageButton by lazy { findViewById(R.id.ib_Lock) }
+    private val ibTrunk: ImageButton by lazy { findViewById(R.id.ib_Trunk) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -181,6 +185,20 @@ class MainActivity : AppCompatActivity() {
                 clickCheakBackFogLights
             )
         }
+
+        ibSignal.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.sound_signal),BluetoothConnection.socket!!)
+        }
+        ivHandBrake.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.hand_brake),BluetoothConnection.socket!!)
+        }
+        ibLock.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.Lock),BluetoothConnection.socket!!)
+        }
+        ibTrunk.setOnClickListener {
+            if(connectionCheack()) ConnectThread().writeData(getString(R.string.Trunk),BluetoothConnection.socket!!)
+        }
+
 
         val ibStart: ImageButton = findViewById(R.id.ib_Start)
         val tvTemp: TextView = findViewById(R.id.tv_Temp)

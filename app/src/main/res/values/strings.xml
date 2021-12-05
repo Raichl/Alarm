@@ -25,6 +25,9 @@
     <string name="sound_signal">sound_signal</string>
     <string name="start_btn">start_btn</string>
     <string name="window">window</string>
+    <string name="Lock">lock</string>
+    <string name="Trunk">Trunk</string>
+
     <string name="input">Ручной ввод</string>
     <string name="addMassage">Введите сообщение</string>
     <string name="send">Отправить</string>
